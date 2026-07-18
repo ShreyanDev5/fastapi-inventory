@@ -1,6 +1,6 @@
 # <img src="frontend/public/favicon.svg" width="28" height="28" style="vertical-align: middle;" /> FastAPI Inventory
 
-A full-stack inventory management app featuring a FastAPI backend and a React frontend. It provides product CRUD operations, stock management, and automatic database seeding.
+Fastapi Inventory is a full-stack inventory management app featuring a FastAPI backend and a React frontend. It provides product CRUD operations, stock management, and automatic database seeding.
 
 ---
 
@@ -16,25 +16,24 @@ A full-stack inventory management app featuring a FastAPI backend and a React fr
 
 ## 📸 Preview
 
-| Home Dashboard | Product Details | Add Product |
-| :---: | :---: | :---: |
-| <img src="frontend/public/all_product_page.png" width="280" alt="Home Dashboard"> | <img src="frontend/public/product_details_card.png" width="280" alt="Product Details"> | <img src="frontend/public/add_product_page.png" width="200" alt="Add Product"> |
+| Home Page | All Products | Product Details | Add Product |
+| :---: | :---: | :---: | :---: |
+| <img src="frontend/public/home_page.png" width="200" alt="Home Page"> | <img src="frontend/public/all_product_page.png" width="200" alt="All Products"> | <img src="frontend/public/product_details_card.png" width="200" alt="Product Details"> | <img src="frontend/public/add_product_page.png" width="150" alt="Add Product"> |
 
 ---
 
 ## 🛠️ Tech Stack
 
 *   **Backend**: Python, FastAPI, SQLAlchemy ORM, Pydantic v2, PostgreSQL (psycopg2), Uvicorn
-*   **Frontend**: React (Vite), Vanilla CSS (Glassmorphism layout)
+*   **Frontend**: React (Vite), Vanilla CSS (Glassmorphism layout), React Icons
 *   **AI Tools**: Cursor, Windsurf, Codex, GitHub Copilot, Antigravity
-*   **Testing & Tools**: Postman, Swagger UI, ReDoc
 
 ---
 
 ## 📁 Structure
 
 *   `backend/` – FastAPI REST API, SQLAlchemy models, and schemas
-*   `frontend/` – React dashboard frontend SPA
+*   `frontend/` – React frontend dashboard SPA
 *   `.venv/` – Local Python virtual environment
 
 ---
@@ -75,7 +74,7 @@ pip install fastapi uvicorn sqlalchemy psycopg2 pydantic
 # Run backend
 uvicorn main:app --reload
 ```
-*   **API Docs (Swagger UI)**: `http://localhost:8000/docs`
+*   **API Docs (Swagger UI)**: `http://localhost:8000/docs` (ReDoc: `/redoc`)
 *   *Note: Seeds demo products on startup if the database is empty.*
 
 ### Frontend
@@ -89,8 +88,7 @@ npm install && npm run dev
 
 ## 🔌 API
 
-All communication between the frontend React application and the FastAPI server is handled by the API client.
-
+*   `GET /` – Connectivity check
 *   `GET /products` – Get all products
 *   `GET /products/{id}` – Get product details
 *   `POST /products` – Create product
@@ -102,9 +100,9 @@ All communication between the frontend React application and the FastAPI server 
 
 ## 🏛️ Architecture
 
-*   **Design**: Clean layered-style architecture (`main/routing -> schemas -> database/models -> CRUD operations`).
+*   **Design**: Clean layered-style architecture (`Routing -> Schemas -> DB Models -> CRUD`).
 *   **Data Flow**: Pydantic schemas validate requests before SQLAlchemy models execute DB operations.
-*   **Service/DB Layer**: Handles automatic session management, database transaction safety, and seeding of demo products when the database is empty.
+*   **Database**: Automatic session management, database transaction safety, and automatic seeding.
 
 ---
 
