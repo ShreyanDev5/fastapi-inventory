@@ -21,7 +21,7 @@ FastAPI Inventory is a full-stack inventory management app featuring a FastAPI b
 | **Home Page** | **All Products** |
 | <img src="frontend/public/home_page.png" width="380" alt="Home Page"> | <img src="frontend/public/all_product_page.png" width="380" alt="All Products"> |
 | **Product Details** | **Add Product** |
-| <img src="frontend/public/product_details_card.png" width="380" alt="Product Details"> | <img src="frontend/public/add_product_page.png" width="280" alt="Add Product"> |
+| <img src="frontend/public/product_details_card.png" width="380" alt="Product Details"> | <img src="frontend/public/add_product_page.png" width="380" alt="Add Product"> |
 
 ---
 
