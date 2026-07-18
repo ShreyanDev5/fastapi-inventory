@@ -27,7 +27,7 @@ FastAPI Inventory is a full-stack inventory management app featuring a FastAPI b
 
 ## 🛠️ Tech Stack
 
-*   **Backend**: Python, FastAPI, SQLAlchemy ORM, Pydantic v2, PostgreSQL (psycopg2), Uvicorn
+*   **Backend**: Python, FastAPI, SQLAlchemy, Pydantic v2, PostgreSQL (psycopg2), Uvicorn
 *   **Frontend**: React (Vite), Vanilla CSS (Glassmorphism layout), React Icons
 *   **AI Tools**: Antigravity
 
