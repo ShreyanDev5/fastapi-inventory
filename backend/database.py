@@ -1,8 +1,16 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# PostgreSQL connection URL
-DB_URL = "postgresql://postgres:rick5@localhost:5432/inventory_db"
+# Load environment variables from a .env file if python-dotenv is installed
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+# PostgreSQL connection URL (fallback to local defaults if DATABASE_URL is not set)
+DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/inventory_db")
 
 # SQLAlchemy engine to connect to the database
 engine = create_engine(DB_URL)

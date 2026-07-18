@@ -50,10 +50,11 @@ Fastapi Inventory is a full-stack inventory management app featuring a FastAPI b
    ```sql
    CREATE DATABASE inventory_db;
    ```
-2. Verify or update the database connection string in `backend/database.py`:
-   ```python
-   DB_URL = "postgresql://postgres:<your_password>@localhost:5432/inventory_db"
+2. Create a `.env` file in the `backend/` directory from `.env.example`:
+   ```bash
+   cp .env.example .env
    ```
+3. Update the `DATABASE_URL` in `.env` with your database credentials.
 
 ### Backend
 ```bash
@@ -69,7 +70,7 @@ cd backend
 source ../.venv/bin/activate
 
 # Install dependencies
-pip install fastapi uvicorn sqlalchemy psycopg2 pydantic
+pip install fastapi uvicorn sqlalchemy psycopg2 pydantic python-dotenv
 
 # Run backend
 uvicorn main:app --reload
