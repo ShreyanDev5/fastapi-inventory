@@ -65,16 +65,28 @@ Create database `inventory_db` in PostgreSQL:
 ```sql
 CREATE DATABASE inventory_db;
 ```
-Configure environment variables:
+Copy environment config in `backend/`:
 ```bash
-cp backend/.env.example backend/.env
-# Set DATABASE_URL=postgresql://postgres:your_password@localhost:5432/inventory_db in backend/.env
+# Windows (PowerShell): Copy-Item backend\.env.example backend\.env
+# Windows (CMD / Bash): cp backend/.env.example backend/.env
+```
+Set your PostgreSQL credentials in `backend/.env`:
+```env
+DATABASE_URL=postgresql://postgres:your_password@localhost:5432/inventory_db
 ```
 
 ### 2. Backend Setup
 ```bash
+# Create virtual environment from project root (if not present)
+python -m venv .venv
+
+# Activate virtual environment:
+# Windows (PowerShell): .venv\Scripts\Activate.ps1
+# Windows (CMD):        .venv\Scripts\activate.bat
+# Windows (Git Bash):   source .venv/Scripts/activate
+# macOS/Linux:          source .venv/bin/activate
+
 cd backend
-source ../.venv/bin/activate  # Windows PowerShell: ..\.venv\Scripts\Activate.ps1
 pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic python-dotenv
 uvicorn main:app --reload
 ```
@@ -83,9 +95,11 @@ uvicorn main:app --reload
 ### 3. Frontend Setup
 ```bash
 cd frontend
-npm install && npm run dev
+npm install
+npm run dev
 ```
 * **App URL**: `http://localhost:5173`
+
 
 ---
 
