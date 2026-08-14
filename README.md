@@ -114,5 +114,3 @@ npm run dev
 | `PUT` | `/products/{id}` | Update product details |
 | `DELETE` | `/products/{id}` | Delete product by ID |
 | `POST` | `/products/{id}/restock` | Restock quantity (`amount` query param, default 10) |
-
-
