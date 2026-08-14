@@ -1,20 +1,36 @@
 # <img src="frontend/public/favicon.svg" width="28" height="28" style="vertical-align: middle;" /> FastAPI Inventory
 
-FastAPI Inventory is a full-stack inventory management app featuring a FastAPI backend and a React frontend. It provides product CRUD operations, stock management, and automatic database seeding.
+Full-stack inventory management app with a Python FastAPI backend, PostgreSQL database, and React dashboard frontend.
 
 ---
 
-## ✨ Features
+## Key Features
 
-*   **Product CRUD**: Create, view, update, and delete products.
-*   **Stock Management**: Restock products by updating quantity via a custom API endpoint.
-*   **Database Seeding**: Automatically creates database tables and seeds demo products on startup.
-*   **Interactive UI**: Glassmorphic dashboard featuring a responsive layout and smooth transitions.
-*   **Auto-Generated Docs**: Self-documenting API using Swagger UI.
+* **Product CRUD**: Create, read, update, and delete inventory items.
+* **Stock Management**: Restock product quantities via custom endpoint.
+* **DB Seeding**: Automatically creates tables and seeds demo products on startup if empty.
+* **Interactive Dashboard**: Real-time stock tracking, product search, and low-stock indicators.
+* **Swagger API Docs**: Interactive API documentation at `/docs`.
 
 ---
 
-## 📸 Preview
+## Tech Stack
+
+* **Backend**: Python 3.10+, FastAPI, SQLAlchemy, Pydantic v2, PostgreSQL (`psycopg2`), Uvicorn
+* **Frontend**: React (Vite), Vanilla CSS
+* **Tooling**: Antigravity (AI agent for UI development)
+
+---
+
+## Key Technical Design
+
+* **Safe DB Sessions**: Uses a generator (`get_db`) with `yield` and FastAPI `Depends` to open/close PostgreSQL sessions per request, preventing session leaks.
+* **Schema Validation**: Pydantic v2 validates request payloads before SQLAlchemy executes database operations.
+* **CORS Security**: Explicitly allows requests from the React frontend (`http://localhost:5173`).
+
+---
+
+## Screenshots
 
 | | |
 | :---: | :---: |
@@ -25,89 +41,64 @@ FastAPI Inventory is a full-stack inventory management app featuring a FastAPI b
 
 ---
 
-## 🛠️ Tech Stack
+## Project Structure
 
-*   **Backend**: Python, FastAPI, SQLAlchemy, Pydantic v2, PostgreSQL (psycopg2), Uvicorn
-*   **Frontend**: React (Vite), Vanilla CSS (Glassmorphism layout), React Icons
-*   **AI Tools**: Antigravity
-
----
-
-## 📁 Structure
-
-*   `backend/` – FastAPI REST API, SQLAlchemy models, and schemas
-*   `frontend/` – React frontend dashboard SPA
-*   `.venv/` – Local Python virtual environment
+```
+fastapi-inventory/
+├── backend/
+│   ├── database.py   # DB connection, sessionmaker & get_db generator
+│   ├── main.py       # FastAPI routes, CORS & startup seeding
+│   ├── models.py     # SQLAlchemy Product database model
+│   └── schemas.py    # Pydantic v2 request/response schemas
+└── frontend/         # React SPA dashboard
+```
 
 ---
 
-## 🚀 Setup
+## Local Setup
 
 ### Prerequisites
-*   **Python 3.10+**
-*   **Node.js 18+**
-*   **PostgreSQL** (running locally)
+* **Python 3.10+** | **Node.js 18+** | **PostgreSQL** running locally
 
-### Database Setup
-1. Create a database named `inventory_db` in PostgreSQL:
-   ```sql
-   CREATE DATABASE inventory_db;
-   ```
-2. Create a `.env` file in the `backend/` directory from `.env.example`:
-   ```bash
-   cp .env.example .env
-   ```
-3. Update the `DATABASE_URL` in `.env` with your database credentials.
+### 1. Database & Environment Setup
+Create database `inventory_db` in PostgreSQL:
+```sql
+CREATE DATABASE inventory_db;
+```
+Configure environment variables:
+```bash
+cp backend/.env.example backend/.env
+# Set DATABASE_URL=postgresql://postgres:your_password@localhost:5432/inventory_db in backend/.env
+```
 
-### Backend
+### 2. Backend Setup
 ```bash
 cd backend
-
-# Windows (PowerShell)
-..\.venv\Scripts\Activate.ps1
-
-# Windows (CMD)
-..\.venv\Scripts\activate.bat
-
-# macOS/Linux
-source ../.venv/bin/activate
-
-# Install dependencies
-pip install fastapi uvicorn sqlalchemy psycopg2 pydantic python-dotenv
-
-# Run backend
+source ../.venv/bin/activate  # Windows PowerShell: ..\.venv\Scripts\Activate.ps1
+pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic python-dotenv
 uvicorn main:app --reload
 ```
-*   **API Docs (Swagger UI)**: `http://localhost:8000/docs`
-*   *Note: Seeds demo products on startup if the database is empty.*
+* **API Docs**: `http://localhost:8000/docs`
 
-### Frontend
+### 3. Frontend Setup
 ```bash
 cd frontend
 npm install && npm run dev
 ```
-*   **App**: `http://localhost:5173`
+* **App URL**: `http://localhost:5173`
 
 ---
 
-## 🔌 API
+## API Endpoints
 
-*   `GET /` – Connectivity check
-*   `GET /products` – Get all products
-*   `GET /products/{id}` – Get product details
-*   `POST /products` – Create product
-*   `PUT /products/{id}` – Update product
-*   `DELETE /products/{id}` – Delete product
-*   `POST /products/{id}/restock` – Restock product quantity (accepts `amount` query parameter)
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | Connectivity check |
+| `GET` | `/products` | Fetch all products |
+| `GET` | `/products/{id}` | Fetch product by ID |
+| `POST` | `/products` | Create product (HTTP 201) |
+| `PUT` | `/products/{id}` | Update product details |
+| `DELETE` | `/products/{id}` | Delete product by ID |
+| `POST` | `/products/{id}/restock` | Restock quantity (`amount` query param, default 10) |
 
----
 
-## 🏛️ Architecture
-
-*   **Design**: Clean layered-style architecture (`Routing -> Schemas -> DB Models -> CRUD`).
-*   **Data Flow**: Pydantic schemas validate requests before SQLAlchemy models execute DB operations.
-*   **Database**: Automatic session management, database transaction safety, and automatic seeding.
-
----
-
-> **Note**: The frontend of this project was built using AI tools.
