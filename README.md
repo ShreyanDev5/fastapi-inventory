@@ -4,7 +4,6 @@ A full-stack inventory management web application built with FastAPI, PostgreSQL
 
 [![API Docs](https://img.shields.io/badge/API_Docs-Interactive_Swagger-009688?style=flat-square)](#api-reference)
 [![Database](https://img.shields.io/badge/Database-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Frontend](https://img.shields.io/badge/Frontend-React_19-61dafb?style=flat-square&logo=react&logoColor=black)](#)
 
 ---
 
