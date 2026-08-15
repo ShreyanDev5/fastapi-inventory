@@ -1,9 +1,10 @@
 # <img src="frontend/public/favicon.svg" width="28" height="28" style="vertical-align: middle;" /> FastAPI Inventory
 
-A full-stack inventory management web application built with FastAPI, PostgreSQL, and React. It features complete product CRUD operations, stock restocking, automatic database seeding, and interactive Swagger API documentation.
+A full-stack inventory management web application built with FastAPI, PostgreSQL, and React. Features complete product CRUD operations, atomic restocking, automatic database seeding, and interactive Swagger API documentation.
 
-[![API Docs](https://img.shields.io/badge/API_Docs-Interactive_Swagger-009688?style=flat-square)](http://localhost:8000/docs)
-[![Frontend](https://img.shields.io/badge/Frontend-React_19-61dafb?style=flat-square)](http://localhost:5173)
+[![API Docs](https://img.shields.io/badge/API_Docs-Interactive_Swagger-009688?style=flat-square)](#api-reference)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Frontend](https://img.shields.io/badge/Frontend-React_19-61dafb?style=flat-square&logo=react&logoColor=black)](#)
 
 ---
 
@@ -31,7 +32,20 @@ A full-stack inventory management web application built with FastAPI, PostgreSQL
 
 - **Backend**: Python 3.10+, FastAPI, SQLAlchemy, Pydantic v2, PostgreSQL (`psycopg2`), Uvicorn
 - **Frontend**: React 19, Vite, Lucide Icons, Vanilla CSS
-- **AI Tooling**: Antigravity (Pair programming and UI/UX design)
+- **AI Tooling**: Antigravity, Cursor (Frontend)
+
+---
+
+## Architecture
+
+```text
+React Frontend (Vite) ──> FastAPI Router (main.py) ──> SQLAlchemy ORM (models.py) ──> PostgreSQL Database
+```
+
+- **Router (`main.py`)**: Defines REST endpoints, validates request payloads via Pydantic schemas, and manages CORS policies.
+- **Database Engine (`database.py`)**: Configures the PostgreSQL engine and yields database sessions via FastAPI `Depends` to prevent connection leaks.
+- **Data Models (`models.py`)**: Encapsulates SQLAlchemy entity structures mapping database tables and attributes.
+- **Schemas (`schemas.py`)**: Enforces strict Pydantic v2 request serialization and response validation.
 
 ---
 
